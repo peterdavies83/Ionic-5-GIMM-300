@@ -33,6 +33,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import firebase from 'firebase/app';
+import { GetProcessEnv } from './react-app-env.d';
+
+firebase.initializeApp(GetProcessEnv());
 
 const App: React.FC = () => (
   <IonApp>
