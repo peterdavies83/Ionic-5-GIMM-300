@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonCard, IonCardContent, IonPage, IonTitle, IonToolbar, IonCardHeader } from '@ionic/react';
 import './Tab1.css';
+import AddItem from '../AddItem'
+import ItemList from '../ItemList';
 
 const Tab1: React.FC = () => {
 
@@ -31,13 +33,14 @@ const Tab1: React.FC = () => {
           <IonCardHeader>
             <h3>New Entry</h3>
           </IonCardHeader>
-            {/*TODO: write a AddItem.tsx file to hold entry */}
+          <AddItem title={current} clear={()=> setCurrent(getEmpty())}>
+          </AddItem>          
           <IonCardContent>
             <h3>Title:</h3>
           </IonCardContent>
           {}
         </IonCard>
-        {/* TODO: Add a list of items to database to display */}
+        <ItemList doEdit={setCurrent}></ItemList>
       </IonContent>
     </IonPage>
   );
