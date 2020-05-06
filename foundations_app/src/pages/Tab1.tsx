@@ -31,12 +31,12 @@ const Tab1: React.FC = () => {
       <IonContent>
         <IonCard>
           <IonCardHeader>
-            <h3>New Entry</h3>
+            <h3>New Calendar Entry</h3>
           </IonCardHeader>
           <AddItem title={current} clear={()=> setCurrent(getEmpty())}>
           </AddItem>          
           <IonCardContent>
-            <h3>Title:</h3>
+
           </IonCardContent>
           {}
         </IonCard>
