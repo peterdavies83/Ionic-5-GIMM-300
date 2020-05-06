@@ -3,10 +3,17 @@ import { IonContent, IonHeader, IonCard, IonCardContent, IonPage, IonTitle, IonT
 import './Tab1.css';
 import AddItem from '../AddItem'
 import ItemList from '../ItemList';
+import {Calendar} from '@ionic-native/calendar/ngx';
 
 const Tab1: React.FC = () => {
 
   const [current, setCurrent] = useState(null);
+
+  //  const openCalendar = async () => {
+  //    const data = await Calendar;
+  //    console.log('working');
+  //  }
+  
 
   const getEmpty = () => {
     return ({
@@ -36,7 +43,7 @@ const Tab1: React.FC = () => {
           <AddItem title={current} clear={()=> setCurrent(getEmpty())}>
           </AddItem>          
           <IonCardContent>
-            <IonRow>
+            {/* <IonRow>
               <IonCol>Day of Week: </IonCol>
               <IonCol>Sunday</IonCol>
               <IonCol>Monday</IonCol>
@@ -308,7 +315,7 @@ const Tab1: React.FC = () => {
               <IonCol class="borders" id="Thu11PM"></IonCol>
               <IonCol class="borders" id="Fri11PM"></IonCol>
               <IonCol class="borders" id="Sat11PM"></IonCol>
-            </IonRow>
+            </IonRow> */}
           </IonCardContent>
           {}
         </IonCard>

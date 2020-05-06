@@ -6,6 +6,7 @@ import DataProps from './components/DataProps';
 import {Plugins} from '@capacitor/core';
 import {useCamera} from '@ionic/react-hooks/camera';
 import {CameraResultType, CameraSource} from '@capacitor/core';
+import {Calendar} from '@ionic-native/calendar/ngx';
 
 export function debugInfo(logInfo:DataProps) {
     console.log(logInfo.title, logInfo.content, logInfo.date, logInfo.location, logInfo.picture);
@@ -42,6 +43,11 @@ const AddItem: React.FC<DataProps> = (props) => {
         && setItem(value.data().name);
     },
     [loading, props.title, value]);
+
+    const openCalendar = async () => {
+        const data = await Calendar;
+        console.log('working');
+      }
 
     const addLocation = async () => {
         const {Geolocation} = Plugins;
@@ -120,6 +126,9 @@ const AddItem: React.FC<DataProps> = (props) => {
                 </IonButton>
                 <IonButton onClick={takePhoto}>
                     Add Photo
+                </IonButton>
+                <IonButton onClick={openCalendar}>
+                    Calendar
                 </IonButton>
             </IonCardContent>
         </IonCard>
