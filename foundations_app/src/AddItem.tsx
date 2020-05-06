@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import {useDocument} from 'react-firebase-hooks/firestore';
-import {IonItem, IonButton, IonInput, IonCard, IonCardHeader, IonCardContent} from '@ionic/react';
+import {IonItem, IonButton, IonInput, IonCard, IonCardHeader, IonCardContent, IonDatetime} from '@ionic/react';
 import DataProps from './components/DataProps';
 import {Plugins} from '@capacitor/core';
 import {useCamera} from '@ionic/react-hooks/camera';
@@ -58,10 +58,10 @@ const AddItem: React.FC<DataProps> = (props) => {
             source:CameraSource.Camera,
             quality:100
         });
-        const photo = `data:image/jpeg;base64,${cameraPhoto.base64String}`;
+        const d = `data:image/jpeg;base64,${cameraPhoto.base64String}`;
         return setItem({
             ...item,
-            picture:photo
+            date: new Date().getDate().toString()
         });
     }
 
@@ -70,7 +70,7 @@ const AddItem: React.FC<DataProps> = (props) => {
         if (props.title) {
             await(collectionsRef).doc(props.title).set({
                 title: item.title, content: item.content,
-                date: new Date().getTime(), location: item.location ? item.location : "",
+                date: item.date ? item.date : "", location: item.location ? item.location : "",
                 picture:item.picture ? item.picture : ""}, {merge:true});
                 clearInfo(item);
                 setItem(item);
@@ -79,7 +79,7 @@ const AddItem: React.FC<DataProps> = (props) => {
         else{
             await collectionsRef.add({
                 title: item.title, content: item.content,
-                date: new Date().getTime(), location: item.location ? item.location : "",
+                date: item.date ? item.date: "", location: item.location ? item.location : "",
                 picture:item.picture ? item.picture : ""});
                 clearInfo(item);
                 setItem(item);
@@ -99,14 +99,18 @@ const AddItem: React.FC<DataProps> = (props) => {
         <IonCard>
             <IonCardContent>
                 <IonItem>
-                    <IonInput value={item.title} placeholder="Title" name="title" onIonChange={updateField}>
+                    <IonInput value={item.title} placeholder="Event Title" name="title" onIonChange={updateField}>
 
                     </IonInput>
                 </IonItem>
                 <IonItem>
-                    <IonInput value={item.content} placeholder="Content" name="content" onIonChange={updateField}>
+                    <IonInput value={item.content} placeholder="Details" name="content" onIonChange={updateField}>
                         
                     </IonInput>
+                </IonItem>
+                <IonItem>
+                    <IonDatetime value={item.date} placeholder="Date" name="date" onIonChange={updateField} min="2020-05-05" max="2022">
+                    </IonDatetime>
                 </IonItem>
                 <IonButton onClick={onSave}>
                     Upload
