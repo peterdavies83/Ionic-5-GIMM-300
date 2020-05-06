@@ -110,7 +110,7 @@ const AddItem: React.FC<DataProps> = (props) => {
                 </IonItem>
                 <IonItem>
                     <IonDatetime value={item.date} placeholder="Date" name="date" onIonChange={updateField} min="2020-05-05" max="2022">
-                    </IonDatetime>
+                    </IonDatetime> //test
                 </IonItem>
                 <IonButton onClick={onSave}>
                     Upload
