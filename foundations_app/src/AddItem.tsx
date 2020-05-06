@@ -47,7 +47,7 @@ const AddItem: React.FC<DataProps> = (props) => {
     const openCalendar = async () => {
         const data = await Calendar;
         console.log('working');
-      }
+      } 
 
     const addLocation = async () => {
         const {Geolocation} = Plugins;
